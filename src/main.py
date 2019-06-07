@@ -13,4 +13,4 @@ print("ESP OK")
 from tallyscreen import *
 ts = TallyScreen()
 ts.msg('TallyScreen OK')
-ts.loop()
+#ts.loop()

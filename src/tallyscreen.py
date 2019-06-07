@@ -41,13 +41,13 @@ class TallyScreen():
             self.display.text(msg, 0, 0, 1)
             self.display.show()
 
-
+    # confusing naming...
     def fetch(self):
         self.response = urequests.get(self.uri)
         return int(self.response.json()['metadata']['created_at_timestamp'])
 
 
-    def update(self):
+    def is_updated(self):
         rmca = self.created_at_timestamp
         nwca = self.fetch()
         if nwca > rmca:
@@ -83,10 +83,11 @@ class TallyScreen():
 ######################
 
     def loop(self):
+        """
+        TODO: This blocks. Update to async polling?
+        """
         while True:
-            ls = self.update()
-            print(ls)
-            if ls == True:
+            if self.is_updated() == True:
 #                self.displayBasicTally()
                 self.displayTally()
             utime.sleep_ms(self.network_delay_ms)

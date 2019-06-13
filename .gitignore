@@ -52,4 +52,6 @@ MANIFEST
 bin/*
 micropython-firmware/*
 
+# build script
+flash.sh
 serial.sh
